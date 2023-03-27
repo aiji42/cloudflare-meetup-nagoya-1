@@ -47,13 +47,6 @@ const htmlRewriter = (message: string) =>
     },
   });
 
-const proxyFetch = (request: Request) => {
-  const url = new URL(request.url);
-  url.host = "cache-sample-next-kprx75yava-an.a.run.app";
-
-  return fetch(new Request(url, request));
-};
-
 export default {
   async fetch(
     request: Request,
@@ -77,7 +70,7 @@ export default {
 
     // キャッシュが古いが再検証中に使用できる場合
     if (isHTML(request) && cacheData) {
-      ctx.waitUntil(updateCache(cacheKey, proxyFetch(request), env));
+      ctx.waitUntil(updateCache(cacheKey, fetch(request), env));
 
       return htmlRewriter(
         "🟡 Cache is stale (but can be used during revalidation)"
@@ -86,7 +79,7 @@ export default {
 
     // 以降はキャッシュがない場合
 
-    const proxyResponse = await proxyFetch(request);
+    const proxyResponse = await fetch(request);
 
     if (isHTML(request)) {
       ctx.waitUntil(updateCache(cacheKey, proxyResponse.clone(), env));
