@@ -23,7 +23,7 @@ const updateCache = async (
 
   const { maxAge, swr } = parseCacheControl(cacheControl);
 
-  return env.cache.put(cacheKey, await response.arrayBuffer(), {
+  return env.cache.put(cacheKey, response.body!, {
     expirationTtl: Math.max(maxAge + swr, 60),
     metadata: {
       expiration: maxAge * 1000 + new Date().getTime(),
@@ -58,7 +58,7 @@ export default {
     // KVよりキャッシュを取得
     const { metadata, value: cacheData } = await env.cache.getWithMetadata<{
       expiration: number;
-    }>(cacheKey, "arrayBuffer");
+    }>(cacheKey, "stream");
     const cacheTTL = (metadata?.expiration ?? 0) - new Date().getTime();
 
     // キャッシュが新鮮な場合
@@ -79,13 +79,13 @@ export default {
 
     // 以降はキャッシュがない場合
 
-    const proxyResponse = await fetch(request);
+    const response = await fetch(request);
 
     if (isHTML(request)) {
-      ctx.waitUntil(updateCache(cacheKey, proxyResponse.clone(), env));
-      return htmlRewriter("🔴 No cache exists").transform(proxyResponse);
+      ctx.waitUntil(updateCache(cacheKey, response.clone(), env));
+      return htmlRewriter("🔴 No cache exists").transform(response);
     }
 
-    return proxyResponse;
+    return response;
   },
 };

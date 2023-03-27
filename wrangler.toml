@@ -1,7 +1,7 @@
-name = "cf-worker-cache"
+name = "swr-handler"
 main = "src/index.ts"
 compatibility_date = "2023-03-26"
 
 kv_namespaces = [
-  { binding = "cache", id = "fd59e0d8bcda4c26b8aae87ed29fe5c3", preview_id = "97e9520408564305ad40ba3430760bd8" }
+  { binding = "cache", id = "your-id", preview_id = "your-preview-id" }
 ]
