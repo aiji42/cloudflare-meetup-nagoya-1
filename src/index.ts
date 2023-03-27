@@ -38,12 +38,9 @@ const isHTML = (request: Request) => {
 const htmlRewriter = (message: string) =>
   new HTMLRewriter().on("body", {
     element: (e) => {
-      e.prepend(
-        `<p>(This message was inserted on edge worker) ${message}</p>`,
-        {
-          html: true,
-        }
-      );
+      e.append(`<script>console.log('${message}');</script>`, {
+        html: true,
+      });
     },
   });
 
