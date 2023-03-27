@@ -19,3 +19,5 @@ yarn run deploy
 ```
 
 デプロイした後に、Cloudflareのウェブコンソールを開いて、「Workers Routes」から任意のルートにプロキシーとして動作するようにセットしてください。
+
+またオリジンは、`Cache-Control: public, max-age=x, stale-while-revalidate=x` (xは任意の秒数) をレスポンスヘッダーに含めるようにしてください。
