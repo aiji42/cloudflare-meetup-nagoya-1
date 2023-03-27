@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "deploy": "wrangler publish",
+    "log": "wrangler tail",
+    "dev": "wrangler dev"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20230321.0",
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.2",
+    "wrangler": "^2.13.0"
+  }
+}

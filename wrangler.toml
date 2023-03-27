@@ -1,0 +1,7 @@
+name = "cf-worker-cache"
+main = "src/index.ts"
+compatibility_date = "2023-03-26"
+
+kv_namespaces = [
+  { binding = "cache", id = "800e50c243bb482f9faa5a50f68521ba", preview_id = "72ce2235554244db9498614afcf377ef" }
+]
