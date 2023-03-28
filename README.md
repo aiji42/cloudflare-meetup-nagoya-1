@@ -2,7 +2,7 @@
 
 [Cloudflare Meetup Nagoya Kick Off!](https://cfm-cts.connpass.com/event/275121/) の LT で使用したソースコードです。
 
-LTの資料のリンクをここに貼る
+LTの資料は[こちら](https://speakerdeck.com/aiji42/cloudflare-workerstokvde-kiyatusiyuwofei-tong-qi-nigeng-xin-suru-cloudflare-meetup-nagoya)
 
 ## Deploy
 
